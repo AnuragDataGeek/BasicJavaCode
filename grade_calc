@@ -1,0 +1,69 @@
+package practice.com;
+import java.util.Scanner;
+
+/**
+ * 
+ * @author Smruti
+ *
+ */
+public class Assignment {
+    private String name;
+    private double assignmentMark;
+    private double studentMark;
+    private String grade;
+    
+    // getter and setter to get and set the value of student mark.
+	public double getStudentMark() {
+		return studentMark;
+	}
+
+	public void setStudentMark(double studentMark) {
+		if(assignmentMark < studentMark || studentMark < 0)
+			System.out.println("student mark cannot be less thnan zero or more than assignment mark");
+		else
+			this.studentMark = studentMark;
+	}
+	public Assignment(String name, double assignmentMark, double studentMark) {
+		super();
+		this.name = name;
+		this.assignmentMark = assignmentMark;
+		this.studentMark = studentMark;
+	}
+
+	public Assignment() {
+		assignmentMark = 100;
+	}
+
+	/**
+	 * 
+	 * @return grade
+	 */
+   public String calculateGrade(){
+	   String result = "";
+	   double percentage = (studentMark / assignmentMark) * 100;
+
+	   if(percentage < 50)
+		   result = "Fail";
+	   else if (percentage >= 50 && percentage < 64)
+		   result = "Pass";
+	   else if(percentage >= 75 && percentage < 84)
+		   result = "Distinction";
+	   else if(percentage > 85)
+		   result = "Higer Distinction";
+	   else
+		   result = "No specific position";
+	   
+	   return result;
+   }
+   
+	public static void main(String[] args) {
+		//Assignment assignment = new Assignment("smruti",30,50);
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Student mark to calculate grade");
+		double studentmark = sc.nextDouble();
+		Assignment assignment = new Assignment();
+		assignment.setStudentMark(studentmark);
+		System.out.println("Result"+" "+assignment.calculateGrade());
+	}
+
+}
